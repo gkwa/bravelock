@@ -47,20 +47,19 @@ func parseFlags() error {
 }
 
 func run() error {
+	var fileName string
+
 	hardcodedStrategy := &filename.HardcodedStrategy{Filename: "example.txt"}
 	reflectionStrategy := &filename.ReflectionStrategy{}
 
-	fmt.Println("Hardcoded Strategy:", getFileNamingStrategy(hardcodedStrategy))
-	fmt.Println("Reflection Strategy:", getFileNamingStrategy(reflectionStrategy))
+	fileName = hardcodedStrategy.GetFilename()
+	fmt.Println("Hardcoded Strategy:", fileName)
 
-	fileName := getFileNamingStrategy(reflectionStrategy)
+	fileName = reflectionStrategy.GetFilename()
+	fmt.Println("Reflection Strategy:", fileName)
+
 	fileNameWithoutExt := filename.GetFnameWithoutExtension(fileName)
-
 	fmt.Println("File name without extension:", fileNameWithoutExt)
 
 	return nil
-}
-
-func getFileNamingStrategy(strategy filename.FilenameStrategy) string {
-	return strategy.GetFilename()
 }
