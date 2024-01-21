@@ -1,4 +1,4 @@
-package bravelock
+package filename
 
 import (
 	"path"

@@ -6,6 +6,7 @@ import (
 	"path"
 
 	"github.com/jessevdk/go-flags"
+	"github.com/taylormonacelli/bravelock/filename"
 )
 
 var opts struct {
@@ -47,8 +48,8 @@ func parseFlags() error {
 }
 
 func run() error {
-	hardcodedStrategy := &HardcodedStrategy{Filename: "example.txt"}
-	reflectionStrategy := &ReflectionStrategy{}
+	hardcodedStrategy := &filename.HardcodedStrategy{Filename: "example.txt"}
+	reflectionStrategy := &filename.ReflectionStrategy{}
 
 	fmt.Println("Hardcoded Strategy:", getFileNamingStrategy(hardcodedStrategy))
 	fmt.Println("Reflection Strategy:", getFileNamingStrategy(reflectionStrategy))
@@ -61,7 +62,7 @@ func run() error {
 	return nil
 }
 
-func getFileNamingStrategy(strategy FilenameStrategy) string {
+func getFileNamingStrategy(strategy filename.FilenameStrategy) string {
 	return strategy.GetFilename()
 }
 
