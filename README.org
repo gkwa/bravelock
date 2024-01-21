@@ -5,7 +5,7 @@
 Lets use Strategy pattern to name a file.
 
 We're going to call it the filename strategy and at the moment we have
-two ways we'd wan to name a file:
+two ways we'd want to name a file:
 
 1. hard coded as user specified string
 
