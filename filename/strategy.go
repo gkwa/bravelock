@@ -17,9 +17,9 @@ func (s *HardcodedStrategy) GetFilename() string {
 	return s.Filename
 }
 
-type ReflectionStrategy struct{}
+type FilenameFromGoPackageStrategy struct{}
 
-func (s *ReflectionStrategy) GetFilename() string {
+func (s *FilenameFromGoPackageStrategy) GetFilename() string {
 	_, filename, _, _ := runtime.Caller(1)
 	return path.Base(filename)
 }

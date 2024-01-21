@@ -54,7 +54,7 @@ func run() error {
 	fileName = strategy.GetFilename()
 	fmt.Println("Hardcoded Strategy:", fileName)
 
-	strategy = &filename.ReflectionStrategy{}
+	strategy = &filename.FilenameFromGoPackageStrategy{}
 	fmt.Println("Reflection Strategy:", fileName)
 	fileName = strategy.GetFilename()
 
