@@ -3,7 +3,6 @@ package bravelock
 import (
 	"fmt"
 	"log/slog"
-	"path"
 
 	"github.com/jessevdk/go-flags"
 	"github.com/taylormonacelli/bravelock/filename"
@@ -55,7 +54,7 @@ func run() error {
 	fmt.Println("Reflection Strategy:", getFileNamingStrategy(reflectionStrategy))
 
 	fileName := getFileNamingStrategy(reflectionStrategy)
-	fileNameWithoutExt := getFnameWithoutExtension(fileName)
+	fileNameWithoutExt := filename.GetFnameWithoutExtension(fileName)
 
 	fmt.Println("File name without extension:", fileNameWithoutExt)
 
@@ -64,8 +63,4 @@ func run() error {
 
 func getFileNamingStrategy(strategy filename.FilenameStrategy) string {
 	return strategy.GetFilename()
-}
-
-func getFnameWithoutExtension(fname string) string {
-	return fname[:len(fname)-len(path.Ext(fname))]
 }
