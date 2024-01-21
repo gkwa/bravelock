@@ -1,8 +1,15 @@
 * bravelock
 
-** summary
+** gpt
 
-This is a description of project bravelock.
+Lets use Strategy pattern to name a file.
+
+We're going to call it the filename strategy and at the moment we have
+two ways we'd wan to name a file:
+
+1. hard coded as user specified string
+
+2. using reflection based on calling package name
 
 ** usage
 
@@ -10,5 +17,14 @@ Example:
 #+begin_example
 make test
 ./bravelock --help
-./bravelock --verbose --verbose # for debug
+./bravelock
+#+end_example
+
+Output
+#+begin_example
+[mtm@taylors-MBP-2:bravelock(master)]$ make test
+./bravelock -v -v
+Hardcoded Strategy: example.txt
+Reflection Strategy: bravelock.go
+[mtm@taylors-MBP-2:bravelock(master)]$
 #+end_example

@@ -3,6 +3,7 @@ package bravelock
 import (
 	"fmt"
 	"log/slog"
+	"path"
 
 	"github.com/jessevdk/go-flags"
 )
@@ -46,10 +47,24 @@ func parseFlags() error {
 }
 
 func run() error {
-	slog.Debug("Debug", "currrent level", opts.logLevel)
-	slog.Info("Info", "currrent level", opts.logLevel)
-	slog.Warn("Warn", "currrent level", opts.logLevel)
-	slog.Error("Error", "currrent level", opts.logLevel)
+	hardcodedStrategy := &HardcodedStrategy{Filename: "example.txt"}
+	reflectionStrategy := &ReflectionStrategy{}
+
+	fmt.Println("Hardcoded Strategy:", getFileNamingStrategy(hardcodedStrategy))
+	fmt.Println("Reflection Strategy:", getFileNamingStrategy(reflectionStrategy))
+
+	fileName := getFileNamingStrategy(reflectionStrategy)
+	fileNameWithoutExt := getFnameWithoutExtension(fileName)
+
+	fmt.Println("File name without extension:", fileNameWithoutExt)
 
 	return nil
+}
+
+func getFileNamingStrategy(strategy FilenameStrategy) string {
+	return strategy.GetFilename()
+}
+
+func getFnameWithoutExtension(fname string) string {
+	return fname[:len(fname)-len(path.Ext(fname))]
 }
